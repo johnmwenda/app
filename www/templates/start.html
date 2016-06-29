@@ -5,14 +5,15 @@
     <section class="login-container">
         <div class = "header text-center">
            
-                <h1>CrowdPesa</h1>
-                <h4>Peer to peer lending and borrowing</h4>
+                <img style="max-width:100%" src="img/crowdpesa.png"/>
+                <h4>Lend, Borrow, Grow</h4>
+                    
            
         </div>
 <!--        
        <div class = "row text-center">
             <div class="col">-->
-        <form ng-submit="doLogin()">    
+<!--        <form ng-submit="doLogin(loginData)">    
             <div class="list inset-list">
                 <label class="item item-input item-floating-label">
                     <span class="input-label">email</span>
@@ -34,8 +35,73 @@
                 <div class="col col-center">
                    <a href="#">Forgot your password?</a>
                 </div>
-            </div> <!-- end of ng-submit form-->
-        </form>
+            </div>  end of ng-submit form
+        </form>-->
+<!--ORIGINAL FORM-->
+<!--    <form novalidate>    
+        <div class="list inset-list">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">email</span>
+                <input type="text" placeholder="Your Email" ng-model="loginData.username">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">password</span>
+                <input type="password" placeholder="Password" ng-model="loginData.password">
+            </label>
+            
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <button class="button button-block button-calm ink" data-ink-color="#9DEAFF" 
+                        data-ink-opacity="1" ng-disabled="myForm.$invalid" ng-click="doLogin(loginData)">
+                        LOGIN
+                </button>
+
+            </div>
+            <div class="col col-center">
+               <a href="#">Forgot your password?</a>
+            </div>
+        </div>  
+    </form>-->
+<!--FINAL JS VALIDATION-->
+<form name="authorizationForm" novalidate="" ng-submit="doLogin(authorizationForm)">    
+        <div class="list inset-list">
+            <label class="item item-input item-floating-label" 
+                   ng-class="{ 'has-errors' : (authorizationForm.username.$invalid && authorizationForm.username.$touched ), 'no-errors' : authorizationForm.username.$valid}">
+                <span class="input-label">email</span>
+                <input type="text" name="username" placeholder="Your Email" ng-model="loginData.username" ng-maxlength="20" required>
+            </label>
+             <div class="error-container" 
+                  ng-show="authorizationForm.username.$error && authorizationForm.username.$touched" 
+                  ng-messages="authorizationForm.username.$error">
+                <div ng-messages-include="error-list.html"></div> 
+            </div>  
+            <label class="item item-input item-floating-label"
+                   ng-class="{ 'has-errors' : authorizationForm.password.$invalid && authorizationForm.$submitted, 'no-errors' : authorizationForm.password.$valid  && authorizationForm.$submitted}">
+                <span class="input-label">password</span>
+                <input type="password" name="password" placeholder="Password" ng-model="loginData.password" 
+                       ng-minlength="3" ng-maxlength="20" required>
+            </label>
+             <div class="error-container last-error-container" 
+                  ng-show="authorizationForm.password.$error && authorizationForm.$submitted" 
+                  ng-messages="authorizationForm.password.$error">
+                <div ng-messages-include="error-list.html"></div> 
+            </div>  
+            
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <button class="button button-block button-calm ink"  data-ink-color="#9DEAFF" 
+                        data-ink-opacity="1"  type="submit">
+                        LOGIN
+                </button>
+
+            </div>
+            <div class="col col-center">
+               <a href="#">Forgot your password?</a>
+            </div>
+        </div>  
+    </form>
 <!--        </div>
         </div>-->
        
@@ -50,9 +116,9 @@
             </div>-->
 
                  <div class="button-bar">
-                <a class="button button-positive-900 ink">F</a>
-                <a class="button button-calm-900">T</a>
-                <a class="button button-assertive-900">G</a>
+                <a class="button button-positive-900 ink">Facebook</a>
+                <a class="button button-calm-900">Twitter</a>
+                <a class="button button-assertive-900">Google</a>
             </div>
      
         <div class="row button-row">
@@ -69,6 +135,12 @@
             <br/><strong><h4><a href = "#">Sign up now!</a></h4></strong>
             </div>
         </div> 
+        username: admin<br/>
+        password: admin<br/>
+        {{username}}
+        {{settings}}
+        {{checkDetails}}
+       
        
        </section>
     
@@ -89,5 +161,5 @@
    
        
   </ion-content>
-    <ion-footer-bar class="bar-assertive"><h1 class="title">www.crowdpesa.co.ke</h1></ion-footer-bar>
+<!--    <ion-footer-bar class="bar-assertive"><h1 class="title">www.crowdpesa.co.ke</h1></ion-footer-bar>-->
 </ion-view>
